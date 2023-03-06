@@ -1,0 +1,36 @@
+# action.yml
+name: 'go-build-action'
+author: 'libsgh <woiyyng@gmail.com>'
+description: 'Build go binaries'
+inputs:
+  type:
+    description: build type
+    required: true
+  target:
+    description: build target
+    required: false
+  go-version:
+    description: go build version
+    required: false
+  artifact-name:
+    description: artifact name
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Env
+      run: |
+        wget https://github.com/upx/upx/releases/download/v4.0.2/upx-4.0.2-amd64_linux.tar.xz
+        tar -Jxf upx*.tar.xz
+        sudo cp upx*/upx /usr/bin
+        docker pull techknowlogick/xgo:go-${{ inputs.go-version }}
+        go env -w GO111MODULE=on
+        go install src.techknowlogick.com/xgo@latest
+      shell: bash
+    - name: Build
+      run: |
+        bash <(curl -L https://raw.githubusercontent.com/px-org/build-action/main/build.sh) ${{ inputs.type }} ${{ inputs.artifact-name }} ${{ inputs.target }}
+      shell: bash
+branding:
+  icon: 'package'
+  color: 'blue'
