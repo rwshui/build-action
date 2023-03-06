@@ -116,7 +116,7 @@ COMPRESS_UI(){
   cd ui
   zip -vr ${GITHUB_WORKSPACE}/dist/compress/ui-${RELEASE_TAG}.zip *
   cd ${GITHUB_WORKSPACE}/dist/compress
-  sha256sum ui-${RELEASE_TAG}.zip >> ${GITHUB_WORKSPACE}/dist/compress/sha256.list
+  #sha256sum ui-${RELEASE_TAG}.zip >> ${GITHUB_WORKSPACE}/dist/compress/sha256.list
   ls -n ${GITHUB_WORKSPACE}/dist/compress
 }
 
@@ -129,7 +129,7 @@ RELEASE(){
     else
       tar -czvf compress/"$f".tar.gz "$f" LICENSE README.md
     fi
-    sha256sum "$f" >> ${GITHUB_WORKSPACE}/dist/compress/sha256.list
+    #sha256sum "$f" >> ${GITHUB_WORKSPACE}/dist/compress/sha256.list
   done
 }
 APP_NAME="$2"
