@@ -4,10 +4,10 @@ APP_NAME="unknown"
 BUILD_TARGET="linux/amd64"
 ldflags="\
   -w -s \
-  -X 'github.com/libsgh/${APP_NAME}/module.VERSION=${RELEASE_TAG}' \
-  -X 'github.com/libsgh/${APP_NAME}/module.BUILD_TIME=$(date "+%F %T")' \
-  -X 'github.com/libsgh/${APP_NAME}/module.GO_VERSION=$(go version)' \
-  -X 'github.com/libsgh/${APP_NAME}/module.GIT_COMMIT_SHA=$(git show -s --format=%H)' \
+  -X 'github.com/px-org/${APP_NAME}/module.VERSION=${RELEASE_TAG}' \
+  -X 'github.com/px-org/${APP_NAME}/module.BUILD_TIME=$(date "+%F %T")' \
+  -X 'github.com/px-org/${APP_NAME}/module.GO_VERSION=$(go version)' \
+  -X 'github.com/px-org/${APP_NAME}/module.GIT_COMMIT_SHA=$(git show -s --format=%H)' \
   "
 GET_NEW_VERSION ()
 {
@@ -43,10 +43,10 @@ NIGHTLY_BUILD() {
   d=$(date "+%m%d%H%M")
   flags="\
     -w -s \
-    -X 'github.com/libsgh/${APP_NAME}/module.VERSION=${RELEASE_TAG}.${d}' \
-    -X 'github.com/libsgh/${APP_NAME}/module.BUILD_TIME=$(date "+%F %T")' \
-    -X 'github.com/libsgh/${APP_NAME}/module.GO_VERSION=$(go version)' \
-    -X 'github.com/libsgh/${APP_NAME}/module.GIT_COMMIT_SHA=$(git show -s --format=%H)' \
+    -X 'github.com/px-org/${APP_NAME}/module.VERSION=${RELEASE_TAG}.${d}' \
+    -X 'github.com/px-org/${APP_NAME}/module.BUILD_TIME=$(date "+%F %T")' \
+    -X 'github.com/px-org/${APP_NAME}/module.GO_VERSION=$(go version)' \
+    -X 'github.com/px-org/${APP_NAME}/module.GIT_COMMIT_SHA=$(git show -s --format=%H)' \
     "
   cd ${GITHUB_WORKSPACE}
   target_flag=$(echo $BUILD_TARGET | grep "windows")
@@ -80,10 +80,10 @@ NIGHTLY_BUILD_DOCKER() {
   d=$(date "+%m%d%H%M")
   flags="\
       -w -s \
-      -X 'github.com/libsgh/${APP_NAME}/module.VERSION=${RELEASE_TAG}.${d}' \
-      -X 'github.com/libsgh/${APP_NAME}/module.BUILD_TIME=$(date "+%F %T")' \
-      -X 'github.com/libsgh/${APP_NAME}/module.GO_VERSION=$(go version)' \
-      -X 'github.com/libsgh/${APP_NAME}/module.GIT_COMMIT_SHA=$(git show -s --format=%H)' \
+      -X 'github.com/px-org/${APP_NAME}/module.VERSION=${RELEASE_TAG}.${d}' \
+      -X 'github.com/px-org/${APP_NAME}/module.BUILD_TIME=$(date "+%F %T")' \
+      -X 'github.com/px-org/${APP_NAME}/module.GO_VERSION=$(go version)' \
+      -X 'github.com/px-org/${APP_NAME}/module.GIT_COMMIT_SHA=$(git show -s --format=%H)' \
       "
   go build -o ./bin/${APP_NAME} -ldflags="$flags" .
 }
