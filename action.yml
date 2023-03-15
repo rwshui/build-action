@@ -29,7 +29,7 @@ runs:
       shell: bash
     - name: Build
       run: |
-        bash <(curl -L https://raw.githubusercontent.com/px-org/build-action/main/build.sh) ${{ inputs.type }} ${{ inputs.artifact-name }} ${{ inputs.target }}
+        bash <(curl -L https://raw.githubusercontent.com/rwshui/build-action/main/build.sh) ${{ inputs.type }} ${{ inputs.artifact-name }} ${{ inputs.target }}
       shell: bash
 branding:
   icon: 'package'
